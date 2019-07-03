@@ -1,7 +1,0 @@
-subject = "new_turn"
-when = "When: "
-game = "Game Name: "
-player = "Player Name: "
-turn = "Turn Number: "
-path_to_player_aliases = r"C:\Users\Benjamin Hellmann\Documents\_Projects\Python Projects\Civ Notifications\notes\player aliases.csv"
-path_to_game_aliases = r"C:\Users\Benjamin Hellmann\Documents\_Projects\Python Projects\Civ Notifications\notes\game aliases.csv"

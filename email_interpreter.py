@@ -8,7 +8,7 @@ import base64
 import email
 import datetime
 
-import string_key
+import global_constants
 from send_webhooks import SendWebhooks
 
 # If modifying these scopes, delete the file token.pickle.
@@ -29,7 +29,7 @@ def main():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'notes/credentials.json', SCOPES)
             creds = flow.run_local_server()
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
@@ -62,7 +62,7 @@ def main():
             mime_msg = email.message_from_bytes(msg_bytes)
 
             # if the subject of the message is not the expected subject, do not pull data from it
-            if not mime_msg['Subject'] == string_key.subject:
+            if not mime_msg['Subject'] == global_constants.subject:
                 break
 
             # iterate over parts of the email object and store only the plain text of the email
@@ -122,7 +122,7 @@ def main():
 #               string_key.player:player_name,
 #               string_key.turn:turn_number}
 def pull_data(str):
-    fields_to_find = [string_key.when, string_key.game, string_key.player, string_key.turn]
+    fields_to_find = [global_constants.when, global_constants.game, global_constants.player, global_constants.turn]
     found_data = dict()
     i = 0
     for field in fields_to_find:

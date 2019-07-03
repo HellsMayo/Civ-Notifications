@@ -2,7 +2,7 @@ import csv
 import requests
 from discord import Webhook, RequestsWebhookAdapter
 
-import string_key
+import global_constants
 
 
 class SendWebhooks:
@@ -13,22 +13,22 @@ class SendWebhooks:
     def send_all_new_turns(self):
         # pull discord player names for each steam player name from a local text file
         player_aliases = {}
-        for row in parse_alias_file(string_key.path_to_player_aliases, '|'):
+        for row in parse_alias_file(global_constants.path_to_player_aliases, '|'):
             player_aliases[row[0]] = row[1]
         print(player_aliases)
 
         # pull webhook address for each game from a local text file
         game_aliases = {}
-        for row in parse_alias_file(string_key.path_to_game_aliases, '|'):
+        for row in parse_alias_file(global_constants.path_to_game_aliases, '|'):
             game_aliases[row[0]] = {'id': row[1], 'token': row[2]}
         print(game_aliases)
 
         for turn in self.new_turns:
             print(turn)
 
-            player_name = turn[string_key.player]
-            game_name = turn[string_key.game]
-            turn_number = turn[string_key.turn]
+            player_name = turn[global_constants.player]
+            game_name = turn[global_constants.game]
+            turn_number = turn[global_constants.turn]
 
             if player_name in player_aliases:
                 discord_name = player_aliases[player_name]
