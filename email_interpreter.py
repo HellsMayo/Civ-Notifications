@@ -123,7 +123,7 @@ def main():
 #               string_key.turn:turn_number}
 def pull_data(str):
     fields_to_find = [global_constants.when, global_constants.game, global_constants.player, global_constants.turn]
-    found_data = dict()
+    found_data = {}
     i = 0
     for field in fields_to_find:
         # find index of the field starting at last point in the email string
