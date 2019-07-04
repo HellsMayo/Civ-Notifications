@@ -28,9 +28,9 @@ class SendWebhooks:
                 turn_number = turn[global_constants.turn]
 
                 if player_name in player_aliases:
-                    discord_name = player_aliases[player_name]
+                    discord_id = player_aliases[player_name]
                 else:
-                    discord_name = "[name unavailable]"
+                    discord_id = "[name unavailable]"
 
                 if game_name in game_aliases:
                     webhook_id = game_aliases[game_name]['id']
@@ -40,7 +40,7 @@ class SendWebhooks:
                     webhook_token = game_aliases[global_constants.overflow_channel_name]['token']
 
                 webhook = Webhook.partial(webhook_id, webhook_token, adapter=RequestsWebhookAdapter())
-                webhook.send("<@%s>, take turn #%s in %s" % (discord_name, turn_number, game_name))
+                webhook.send("<@%s>, take turn #%s in %s" % (discord_id, turn_number, game_name))
         except Exception as error:
             print(error)
             return False
