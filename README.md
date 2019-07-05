@@ -14,9 +14,9 @@ ________________________________________________________________________________
 
 A file named "credentials.json" is to be stored in the /note directory. This can be downloaded from the second link after pressing "ENABLE GMAIL API" and is specific to the gmail inbox you will be recieveing emails from IFTTT
 
-The required pip installs for this program:
-  pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-  pip install -U discord.py
+The required pip installs for this program:                                                                                               
+  pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib                                                 
+  pip install -U discord.py                                                                                                               
 
 Relavant links:
 
