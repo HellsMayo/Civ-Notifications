@@ -21,6 +21,8 @@ class SendWebhooks:
         for row in parse_alias_file(global_constants.path_to_game_aliases, '|'):
             game_aliases[row[0]] = {'id': row[1], 'token': row[2]}
 
+        count_sent = 0
+
         try:
             for turn in self.new_turns:
                 player_name = turn[global_constants.player]
@@ -41,10 +43,11 @@ class SendWebhooks:
 
                 webhook = Webhook.partial(webhook_id, webhook_token, adapter=RequestsWebhookAdapter())
                 webhook.send("<@%s>, take turn #%s in %s" % (discord_id, turn_number, game_name))
+                count_sent += 1
         except Exception as error:
             print(error)
-            return False
-        return True
+            return count_sent
+        return count_sent
 
 
 def parse_alias_file(path, delimiter=','):

@@ -105,15 +105,19 @@ def main():
             # create SendWebhook object and pass it all extracted data
             sender = SendWebhooks(unread_new_turns)
 
-            # initiate send_all_new_turns and store boolean in completed
-            complete = sender.send_all_new_turns()
+            # initiate send_all_new_turns and store tuple in sender_data
+            # sender data in the format: ((int)webhooks sent, (int)total webhooks)
+            turns_sent = sender.send_all_new_turns()
 
-            if complete:
-                print("All webhooks sent at %s." % datetime.datetime.now())
-            else:
-                print("Not all webhooks were not sent at %s." % datetime.datetime.now())
+            print("%s out of %s webhooks were sent at %s." % (turns_sent, len(sender.new_turns), datetime.datetime.now()))
+
+            if not turns_sent == len(sender.new_turns):
+                print("new turn that caused the error:")
+                print(sender.new_turns[turns_sent])
+            print("------------")
         else:
             print("No new turns to send at %s." % datetime.datetime.now())
+            print("------------")
 
 
 # returns dictionary data after given fields
